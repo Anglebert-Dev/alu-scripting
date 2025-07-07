@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""Print the titles of the first 10 Hot Posts"""
-
+"""Print the titles of the first 10Hot Posts"""
 import requests
 
 
@@ -12,13 +11,12 @@ def top_ten(subreddit):
 
     if response.status_code == 200:
         json_data = response.json()
-        children = json_data.get('data', {}).get('children', [])
-        for i in range(min(10, len(children))):
+        for i in range(10):
             print(
-                children[i]
-                .get('data', {})
-                .get('title')
-            )
-        return "OK"
+                    json_data.get('data')
+                    .get('children')[i]
+                    .get('data')
+                    .get('title')
+                )
     else:
-        return "OK"
+        print(None)
